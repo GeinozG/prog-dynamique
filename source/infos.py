@@ -1,11 +1,11 @@
 class DocumentInfos:
 
     title = u'Programmation dynamique'
-    first_name = 'Cédric'
-    last_name = 'Donner'
+    first_name = 'Grégoire'
+    last_name = 'Geinoz'
     author = f'{first_name} {last_name}'
     year = u'2022'
-    month = u'Juillet'
+    month = u'Décembre'
     seminary_title = u'Algorithmes et structures de données II'
     tutor = u"Cédric Donner"
     release = "(Version finale)"
