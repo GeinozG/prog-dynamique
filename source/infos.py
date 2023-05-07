@@ -1,12 +1,12 @@
 class DocumentInfos:
 
-    title = u'Programmation dynamique'
+    title = u'Algorithme Minimax'
     first_name = 'Grégoire'
     last_name = 'Geinoz'
     author = f'{first_name} {last_name}'
-    year = u'2022'
-    month = u'Décembre'
-    seminary_title = u'Algorithmes et structures de données II'
+    year = u'2023'
+    month = u'Mai'
+    seminary_title = u'Cours OC Informatique'
     tutor = u"Cédric Donner"
     release = "(Version finale)"
     repository_url = "https://github.com/donnerc/prog-dynamique"

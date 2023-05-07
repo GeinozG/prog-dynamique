@@ -4,18 +4,17 @@
     contain the root `toctree` directive.
     
 
-Programmation dynamique
+Algorithme Minimax
 =======================
 
 ..  toctree::
     :maxdepth: 2
     :caption: Table des matières
 
-    introduction.rst
-    01-fibonacci.rst
-    knapsack-dp.rst
-    conclusion.rst
-    references.rst
+    introduction.md
+    algorithme-minimax.md
+    implementation.md
+    detail-impl-minimax.md
 
 ..
     ..  toctree::
