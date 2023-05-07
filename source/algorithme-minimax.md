@@ -43,7 +43,10 @@ Entré/Sortie de la fonction d'évaluation.
 
 ### Déterminer le meilleur coup à jouer
 
-Maintenant que chaque feuille de l'arbre à un score, il faut déterminer quel est le meilleur coup à jouer afin de poursuivre le chemin de l'arbre qui mène à l'état le plus favorable.
+Maintenant que chaque feuille de l'arbre à un score, il faut déterminer quel est le meilleur coup à jouer afin de poursuivre le chemin de l'arbre qui mène à l'état le plus favorable. Pour ce faire l'algorithme remonte les scores selon deux supposition :
+
+- Le joueur veut jouer les meilleurs coups
+- L'adversaire va jouer tous les meilleurs coups pour lui.
 
 ### Pourquoi n'évaluer que les feuilles /// commenté
 
