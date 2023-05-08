@@ -4,7 +4,7 @@ Tout d'abord, il s'agit de définir le fonctionnement de l'algorithme Minimax et
 
 ## Fonctionnement
 
-### Arbres des possibilités
+### Arbre des possibilités
 
 L'algorithme Minimax fonctionne en recherchant dans une situation donnée, parmi tous les coups possibles, lequel est le plus favorable pour le joueur et le plus défavorable pour son adversaire. Concrètement, il s'agit d'explorer de haut en bas un arbre des possibilités qui recense tous les coups possibles, sur plusieurs coups à l'avance (le nombre de coups à l'avance représente la profondeur de recherche de l'algorithme) :
 
@@ -41,15 +41,35 @@ Comme dit précédemment, la fonction d'évaluation permet à l'algorithme d'att
 Entré/Sortie de la fonction d'évaluation.
 ```
 
+Le calcul se fait en prenant en compte le bénéfice de chaque joueur. Pour que cette évaluation puisse se faire il est important que le jeu qui implémente l'algorithme soit un jeu dit "à somme nulle". C'est-à-dire qu'il faut que le bénéfice d'un joueur entraîne un désavantage équivalent pour l'autre ; la somme des bénéfices et des désavantages doit donc être nulle. Ainsi, plus le joueur a de bénéfices par rapport à ses désavantages (qui correspondent aux bénéfices de l'adversaire), plus son score calculé est élevé.
+
 ### Déterminer le meilleur coup à jouer
 
-Maintenant que chaque feuille de l'arbre à un score, il faut déterminer quel est le meilleur coup à jouer afin de poursuivre le chemin de l'arbre qui mène à l'état le plus favorable. Pour ce faire l'algorithme remonte les scores selon deux supposition :
+Maintenant que chaque feuille de l'arbre à un score attribué, il faut déterminer quel est le meilleur coup à jouer afin de poursuivre le chemin de l'arbre qui mène à l'état le plus favorable. Pour ce faire, l'algorithme procède selon deux suppositions :
 
 - Le joueur veut jouer les meilleurs coups
 - L'adversaire va jouer tous les meilleurs coups pour lui.
 
-### Pourquoi n'évaluer que les feuilles /// commenté
+C'est là que le nom de l'algorithme Minimax prend tout son sens. En effet pour chaque noeud non-feuille, l'algorithme lui attribue le score minimal ou maximal parmi tous les noeuds enfants (note de bas de page!). Les règles pour décider quel score attribuer à chaque noeud est intuitif et découle directement des deux suppositions énoncées précédemment :
+
+- Si le noeud à l'étude est un état du jeu dans lequel le joueur joue le prochain coup, alors le noeud obtient le score maximum parmi ses noeuds enfants.
+- Si c'est au tour de l'adversaire de jouer, alors le noeuds obtient le score minimal parmi ses noeuds enfants.
+
+En procédant ainsi, chaque état du jeu est évalué en fonction du meilleur coup possible pour chaque joueur. C'est-à-dire que le joueur jouera les coups qui maximisent le score de chaque état du jeu, alors que l'adversaire jouera les coups qui minimisent ce score (d'où le nom Minimax) :
+
+```{figure} images/minimax_value.png
+---
+---
+
+Attribution des scores à chaque noeud non-feuille.
+```
+
+Maintenant que chaque noeud à un score, le joueur n'a plus qu'à jouer le coup qui maximisera son score. En l'occurence, dans l'exemple de l'image ci-dessus, le joueur à intérêt à jouer la coup qui l'amène au noeud de enfant de gauche (score=4) car c'est celui qui à le score le plus élevé parmi tous ses enfants.
+
+Il est important de préciser qu'une évaluation statique des enfants directs du noeud racine (note de bas de page !!!) aurait pu générer un score beaucoup plus élevé au noeud de droite (score=-5)  et inférieur au noeud de gauche (score=4) car la fonction d'évaluation ne prend pas en compte les coups qui suivent. Ainsi, le joueur aurait pu prendre une décision qui se serait révélée défavorable quelques coups plus tard. C'est donc tout le principe de l'algorithme que d'éviter ce scénario.
 
 ## Champ d'application
+
+A présent que le fonctionnement de l'algorithme ait été expliqué, il convient de préciser son champ d'application.
 
 ## Elagage alpha-bêta
