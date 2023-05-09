@@ -79,3 +79,9 @@ private:
     SquareType m_computerType;
 };
 ```
+
+Les lignes de code en évidence représentent les trois méthodes essentielles qui constitue l'algorithme :
+
+- La méthode minimax(...) est fondamentale, c'est une méthode récursive
+- La méthode evaluatePosition(...)
+- La méthode getMoves(...)

@@ -29,7 +29,7 @@ A noter que chaque classe représentée dans le diagrame n'est instanciée qu'un
 
 En ce qui concerne la partie du programme qui gère la fenêtre du jeu, ce sont les classes Window et GraphicsManager qui s'en occupent.
 
-### Classe Window
+#### Classe Window
 
 La classe Window représente une abstraction très élémentaire d'une fenêtre. Son seul but est d'ouvrir une nouvelle fenêtre et de l'actualiser afin qu'elle ne plante pas. Ainsi, lorsque la classe est instancié, elle fait les démarches nécessaires pour ouvrir une fenêtre de la taille désirée et ferme cette fenêtre au moment où l'instance est détruite. Enfin, il suffit de l'actualiser grâce à sa méthode update() :
 
@@ -40,7 +40,7 @@ La classe Window représente une abstraction très élémentaire d'une fenêtre.
 Représentation schématique de la classe Window.
 ```
 
-### Classe GraphcisManager
+#### Classe GraphcisManager
 
 Quand à elle, la classe GraphicsManager sert concrètement à gérer tout ce qui est chargement des textures et affichage des textures sur la fenêtre. Logiquement, cette classe à besoin d'avoir une référence à une instance de Window afin d'y afficher ses textures :
 
