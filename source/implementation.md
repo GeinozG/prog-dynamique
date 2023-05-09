@@ -27,8 +27,39 @@ A noter que chaque classe représentée dans le diagrame n'est instanciée qu'un
 
 ### Fenêtre du jeu
 
-En ce qui concerne la fenêtre du jeu, 
+En ce qui concerne la partie du programme qui gère la fenêtre du jeu, ce sont les classes Window et GraphicsManager qui s'en occupent.
 
-### Plateau de jeu
+### Classe Window
+
+La classe Window représente une abstraction très élémentaire d'une fenêtre. Son seul but est d'ouvrir une nouvelle fenêtre et de l'actualiser afin qu'elle ne plante pas. Ainsi, lorsque la classe est instancié, elle fait les démarches nécessaires pour ouvrir une fenêtre de la taille désirée et ferme cette fenêtre au moment où l'instance est détruite. Enfin, il suffit de l'actualiser grâce à sa méthode update() :
+
+```{figure} images/window_class.png
+---
+---
+
+Représentation schématique de la classe Window.
+```
+
+### Classe GraphcisManager
+
+Quand à elle, la classe GraphicsManager sert concrètement à gérer tout ce qui est chargement des textures et affichage des textures sur la fenêtre. Logiquement, cette classe à besoin d'avoir une référence à une instance de Window afin d'y afficher ses textures :
+
+```{figure} images/graphics_manager_class.png
+---
+---
+
+Représentation schématique de la classe GraphicsManager.
+```
+
+### Grille du jeu
+
+A propos de la partie du programme qui gère la grille du Puissance 4, c'est la classe Board qui s'en occupe. Cette classe est la représentation abstraite du jeu et de ses règles. Concrètement, elle stocke la grille du jeu en mémoire et expose des méthodes qui permettent de la modifier en respectant les règles du jeu. Des méthodes permettent également d'obtenir des informations sur la grille du jeu (l'algorithme a besoin de savoir si un joueur a gagné ou si une case de la grille est vide par exemple) :
+
+```{figure} images/board_class.png
+---
+---
+
+Représentation schématique de la classe Board.
+```
 
 ### Algorithme Minimax

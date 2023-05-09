@@ -4,7 +4,7 @@
     contain the root `toctree` directive.
     
 
-Algorithme Minimax
+Algorithme Minimax et implémentation dans un Puissance 4
 =======================
 
 ..  toctree::

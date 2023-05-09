@@ -1,6 +1,6 @@
 class DocumentInfos:
 
-    title = u'Algorithme Minimax'
+    title = u'Algorithme Minimax et implémentation dans un Puissance 4'
     first_name = 'Grégoire'
     last_name = 'Geinoz'
     author = f'{first_name} {last_name}'
