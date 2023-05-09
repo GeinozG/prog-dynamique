@@ -14,7 +14,9 @@ Algorithme Minimax et implémentation dans un Puissance 4
     introduction.md
     algorithme-minimax.md
     implementation.md
-    detail-impl-minimax.md
+    details-impl-minimax.md
+    conclusion.md
+    sources.md
 
 ..
     ..  toctree::
