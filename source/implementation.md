@@ -62,4 +62,6 @@ A propos de la partie du programme qui gère la grille du Puissance 4, c'est la 
 Représentation schématique de la classe Board.
 ```
 
+Comme la classe Board est capable de dessiner sa grille de jeu elle-même, elle possède une référence à la classe GraphicsManager qui expose des méthodes pour charger des textures et dessiner sur la fenêtre de la classe Window.
+
 ### Algorithme Minimax
