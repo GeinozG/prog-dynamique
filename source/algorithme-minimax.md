@@ -70,6 +70,17 @@ Il est important de préciser qu'une évaluation statique des enfants directs du
 
 ## Champ d'application
 
-A présent que le fonctionnement de l'algorithme ait été expliqué, il convient de préciser son champ d'application.
+A présent que le fonctionnement de l'algorithme a été expliqué, il convient de préciser son champ d'application. Comme mentionné précédemment, l'algorithme à besoin ne peut être employé que pour des jeux à somme nulle. Chaque le moindre avantage d'un joueur doit représenter un désavantage équivalent pour l'adversaire. De plus, en l'état, l'algorithme n'est adapté qu'à des jeux opposant deux joueurs. Il est facile de trouver des gens qui remplissent ces deux critères :
+
+- Echecs
+- Puissance 4
+- Morpion
+- Jeu du moulin
+- Jeu de Go
+- Jeu de dames
+
+Cependant, l'application de Minimax ne se limite pas aux jeux, tout autre problème d'optimisation remplissant les deux critères sont des candidats potentiels à l'implémentation de l'algorithme.
 
 ## Elagage alpha-bêta
+
+L'élage alpha-bêta est une optimisation très efficace de l'algorithme qui permet souvent de multiplier sa vitesse d'exécution par deux, dix ou même cent parfois. Le principe est simple à comprendre, comme son nom le suggère, il implique d'élaguer l'arbre des possibilités en n'évaluant pas tous les noeuds de l'arbre. Comme un exemple vaut souvent plus qu'une longue explication, reprenons en considération notre arbre :
