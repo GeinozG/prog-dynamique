@@ -65,3 +65,12 @@ Représentation schématique de la classe Board.
 Comme la classe Board est capable de dessiner sa grille de jeu elle-même, elle possède une référence à la classe GraphicsManager qui expose des méthodes pour charger des textures et dessiner sur la fenêtre de la classe Window.
 
 ### Algorithme Minimax
+
+Pour finir, c'est évidemment la classe Minimax qui s'occupe de la dernière partie du programme. Elle implémente l'algorithme Minimax, une fonction d'évaluation adaptée au Puissance 4 et optimise sa recherche avec l'élagage alpha-bêta. En outre, la classe possède une référence à la classe Board afin d'obtenir toutes les informations de la grille du jeu nécessaires à l'algorithme et modifier la grille pour jouer un coup :
+
+```{figure} images/minimax_class.png
+---
+---
+
+Représentation schématique de la classe Minimax.
+```
