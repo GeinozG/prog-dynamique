@@ -16,6 +16,7 @@ Algorithme Minimax et implémentation dans un Puissance 4
     implementation.md
     details-impl-minimax.md
     conclusion.md
+    tester.md
     sources.md
 
 ..

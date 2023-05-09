@@ -10,7 +10,7 @@ Dans la plupart des états, le jeu offre sept coups potentiels à jouer. Il s'ag
 
 Le programme est composé de plusieurs classes qui le divisent en 3 grandes parties :
 
-1) Gestion de la fenêtre du jeu et le rendu graphique
+1) Gestion de la fenêtre du jeu et du rendu graphique
 2) Gestion du plateau et des règles du jeu
 3) L'algorithme minimax
 
@@ -23,7 +23,7 @@ Schématiquement, le programme ressemble au diagrame de classes suivant (chaque 
 Appartenance de chaque grande classe par rapport aux autres.
 ```
 
-A noter que chaque classe représentée dans le diagrame n'est instanciée qu'une seule fois dans le programe. Par exemple, la classe Board appartenant aux classes Game et Minimax n'est qu'une seule et même instance partagée entre ces deux classes par références. De plus, la classe Game est celle qui possède en tant que membres toutes les autres et qui les instancie. Tel un chef d'orchestre, c'est cette classe qui s'occupe de faire tourner le jeu, de gérer le tour des joueurs et d'informer le joueur humain lorsque le jeu est terminé.
+A noter que chaque classe représentée dans le diagrame n'est instanciée qu'une seule fois dans le programe. Par exemple, la classe Board appartenant aux classes Game et Minimax n'est qu'une seule et même instance partagée entre ces deux classes par références. De plus, la classe Game est celle qui possède en tant que membres toutes les autres et qui les instancie. Tel un chef d'orchestre, c'est cette classe qui s'occupe de faire tourner le jeu, de gérer le tour des joueurs et d'informer l'utilisateur lorsque le jeu est terminé.
 
 ### Fenêtre du jeu
 
