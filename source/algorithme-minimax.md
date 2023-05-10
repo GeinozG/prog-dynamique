@@ -120,4 +120,14 @@ Il est important de se rendre compte que dans cet exemple, l'élagage peut sembl
 
 Pour comprendre quels sont les branches de l'arbre qui se font élaguer, il implique de comprendre en quoi consiste le nom "alpha-bêta" de l'élagage :
 
-- Alpha représente la valeur maximal que le joueur actuel est garanti d'avoir
+- Alpha représente la valeur maximal que le joueur actuel est garanti d'avoir à chaque étape de l'évaluation de l'arbre.
+- Bêta représente exactement le contraire d'alpha, c'est-à-dire la valeur minimal que l'adversaire est garanti d'avoir à chaque étape.
+
+Ces deux valeurs sont donc mise à jour après chaque évaluation selon ces critères, à chaque évaluation d'un état où le prochain coup revient à :
+
+- Ordinateur : si la valeur évalué pour chaque enfant est *supérieur à alpha*, alors *alpha* prend cette valeur. Sinon, il est inutile de mettre à jour la valeur *d'alpha* car le *maximum* garanti au *joueur* est plus *élevé*.
+- Adversaire : si la valeur évalué pour chaque enfant est *inférieur à bêta*, alors *bêta* prend cette valeur. Sinon, il est inutile de mettre à jour la valeur de *bêta* car le *minimum* garanti à *l'adversaire* est plus *petit*.
+
+Il est important de se rappeler que l'ordinateur cherche toujours à maximiser le score de ses états contrairement à l'adversaire qui cherche à le minimiser.
+
+Ainsi, un élagage a lieu de se produire lorsque, pour chaque noeud, bêta est inférieur ou égal à alpha. En effet, pour un noeud maximiseur, si bêta est inférieur ou égal à alpha, cela signifie que la valeur du noeud courant est au moins égal à alpha. Donc bêta (la meilleure valeur pour le noeud minimiseur parent) étant inférieur signifie qu'un meilleur coup était possible pour le noeud minimiseur parent. Evaluer les autres noeuds enfants devient donc inutile puisque le noeud minimiseur parent n'a pas intérêt à jouer le coup du noeud à l'étude. Quant aux noeuds minimiseurs, si bêta ou inférieur à alpha, cela signifie 
