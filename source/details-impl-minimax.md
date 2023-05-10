@@ -82,12 +82,21 @@ private:
 
 Les lignes de code en évidence représentent les trois méthodes essentielles qui constitue l'algorithme :
 
-1) La méthode minimax(...) est fondamentale, c'est une méthode récursive 
-2) La méthode evaluatePosition(...)
-3) La méthode getMoves(...)
+1) La méthode minimax() est fondamentale, c'est une méthode récursive qui va parcourir tous les états possibles du jeu (avec un élagage alpha-bêta) à partir de l'état courant du jeu. La méthode prend plusieurs paramètres :
+    - position : Une position qui correspond à un état de la grille de jeu
+    - bestMove : Une référence qui contiendra au final le meilleur coup à joué évalué
+    - depth : La profondeur de recherche dans l'arbre des possibilités
+    - maxMoves : Correspond au nombre maximum de coups théorique pouvant être joué avant de que la grille de jeu ne soit entièrement remplie
+    - alpha : Variable contenant la valeur alpha de l'élagage alpha-bêta
+    - beta : Variable contenant la valeur bêta de l'élagage alpha-bêta
+    - player : Représente le joueur qui doit jouer le prochain coup
+2) La méthode evaluatePosition()
+3) La méthode getMoves()
 
-## Méthode getMoves()
+## Implémentation des méthodes
 
-## Méthode evaluatePosition()
+### getMoves()
 
-## Méthode minimax()
+### evaluatePosition()
+
+### minimax()
