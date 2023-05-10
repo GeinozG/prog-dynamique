@@ -187,7 +187,17 @@ int Minimax::evaluatePosition(BufBoard const& position, SquareType player)
 
 La variable `value` est celle qui représentera la valeur calculée finale. Elle est initialisée à la valeur `0` à la ligne 3 puis retournée à la ligne 24. Comme pour la fonction `getMoves()`, les boucles `for` aux lignes 5 et 7 parcourent la grille de `position` donnée en paramètre, cette fois, de gauche à droite, de haut en bas mais ça n'a aucune importance dans ce cas.
 
-Concernant les lignes en évidences, les lignes 9 et 13 testent, pour chaque case de la grille, si le type est celui d
+Concernant les lignes en évidences, les lignes 9 et 13 testent, pour chaque case de la grille, si le type correspond à une case occupée par "l'ordinateur" ou par "le joueur humain". Si c'est le cas, aux lignes 10 et 14, la valeur augmente ou diminue respectivement selon la valeur statique de la case occupée. En effet, l'attribut `m_evaluationTable` de la classe Minimax est un tableau à deux dimensions semblable à la grille du jeu. Cependant, chaque case à une valeur fixe en fonction dans le jeu. Concrètement, plus une case offre de possibilités d'aligner quatre jetons (c'est-à-dire gagné la partie), plus la case à une valeur statique importante. Ainsi, si l'un ou l'autre joueur à un jeton dans une case, la valeur de sa position augmente en fonction de la valeur statique de la case, causant un désavantage de valeur équivalente pour le joueur adverse (le Puissance 4 est un jeu à somme nulle). Concrètement, la table d'évaluation est semblable à la {numref}`Figure %s <evaluationTable>`.
+
+```{figure} images/evaluationTable.png
+---
+name: evaluationTable
+---
+
+Table d'évaluation statique du Puissance 4.
+```
+
+Les cases au centre ont évidemment une valeur statique plus grande que les cases vers les bords car elles offrent un plus grand potentiel pour aligner quatre jetons.
 
 ### minimax()
 
