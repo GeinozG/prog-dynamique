@@ -151,4 +151,106 @@ Tous les coups possibles.
 
 ### evaluatePosition()
 
+Ensuite, la méthode evaluatePosition(), également simple à comprendre et à implémenter :
+
+```{code-block} cpp
+---
+emphasize-lines: 9, 11, 13, 15, 20-22
+linenos: true
+---
+int Minimax::evaluatePosition(BufBoard const& position, SquareType player)
+{
+    int value = 0;
+
+    for (int line = 0; line < BOARD_HEIGHT; line++)
+    {
+        for (int col = 0; col < BOARD_WIDTH; col++)
+        {
+            if (position.squares[line][col] == m_computerType)
+            {
+                value += m_evaluationTable[line][col];
+            }
+            else if (position.squares[line][col] == m_humanType)
+            {
+                value -= m_evaluationTable[line][col];
+            }
+        }
+    }
+
+    SquareType winner = m_board.isWin(position);
+    if (winner == m_computerType) value += 100;
+    else if (winner == m_humanType) value -= 100;
+
+    return value;
+}
+```
+
+La variable `value` est celle qui représentera la valeur calculée finale. Elle est initialisée à la valeur `0` à la ligne 3 puis retournée à la ligne 24. Comme pour la fonction `getMoves()`, les boucles `for` aux lignes 5 et 7 parcourent la grille de `position` donnée en paramètre, cette fois, de gauche à droite, de haut en bas mais ça n'a aucune importance dans ce cas.
+
+Concernant les lignes en évidences, les lignes 9 et 13 testent, pour chaque case de la grille, si le type est celui d
+
 ### minimax()
+
+```{code-block} cpp
+int Minimax::minimax(
+    BufBoard const& position,
+    Vector2 & bestMove,
+    int depth,
+    int maxMoves,
+    int alpha,
+    int beta,
+    SquareType player)
+{
+    assert(player != SquareType::Empty);
+
+    SquareType winner = m_board.isWin(position);
+
+    if (depth == 0 || maxMoves == 0 || winner != SquareType::Empty)
+    {
+        return evaluatePosition(position, player);
+    }
+
+    std::vector<Vector2> possibleMoves = getMoves(position);
+    BufBoard childPosition = position;
+
+    if (player == m_computerType)
+    {
+        int maxWeight = MINUS_INFINITY;
+
+        for (Vector2 move : possibleMoves)
+        {
+            childPosition.squares[move.y][move.x] = player;
+
+            int weight = minimax(childPosition, bestMove, depth - 1, maxMoves - 1, alpha, beta, m_humanType);
+            if (depth == SEARCH_DEPTH && weight > maxWeight) bestMove = move;
+            maxWeight = std::max(weight, maxWeight);
+
+            childPosition.squares[move.y][move.x] = SquareType::Empty;
+
+            alpha = std::max(weight, alpha);
+            if (beta <= alpha) return maxWeight;
+        }
+
+        return maxWeight;
+    }
+    else if (player == m_humanType)
+    {
+        int minWeight = PLUS_INFINITY;
+
+        for (Vector2 move : possibleMoves)
+        {
+            childPosition.squares[move.y][move.x] = player;
+
+            int weight = minimax(childPosition, bestMove, depth - 1, maxMoves - 1, alpha, beta, m_computerType);
+            minWeight = std::min(weight, minWeight);
+
+            childPosition.squares[move.y][move.x] = SquareType::Empty;
+
+            beta = std::min(weight, beta);
+            if (beta <= alpha) return minWeight;
+        }
+
+        return minWeight;
+    }
+}
+```
