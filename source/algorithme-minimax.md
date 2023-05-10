@@ -83,4 +83,37 @@ Cependant, l'application de Minimax ne se limite pas aux jeux, tout autre probl�
 
 ## Elagage alpha-bêta
 
-L'élage alpha-bêta est une optimisation très efficace de l'algorithme qui permet souvent de multiplier sa vitesse d'exécution par deux, dix ou même cent parfois. Le principe est simple à comprendre, comme son nom le suggère, il implique d'élaguer l'arbre des possibilités en n'évaluant pas tous les noeuds de l'arbre. Comme un exemple vaut souvent plus qu'une longue explication, reprenons en considération notre arbre :
+L'élage alpha-bêta est une optimisation très efficace de l'algorithme qui permet souvent de multiplier sa vitesse d'exécution par deux, dix ou même cent parfois. Le principe est simple à comprendre, comme son nom le suggère, il implique d'élaguer l'arbre des possibilités en n'évaluant pas tous les noeuds de l'arbre.
+
+### Exemple
+
+Comme un exemple vaut souvent plus qu'une longue explication, reprenons en considération un nouvel arbre dont les feuilles ont déjà été évalué par la fonction d'évaluation :
+
+```{figure} images/alpha_beta_1.png
+---
+---
+
+Exemple d'un arbre dont les feuilles ont toutes été évaluées.
+```
+
+Dans cet exemple, une feuille a été évalué inutilement, il s'agit de la dernière feuille à droite. En effet, sachant que l'ordinateur joue les noeuds bleus et l'adversaire les rouges, chacun cherche respectivement à maximiser ou minimiser le score. Ainsi, au moment d'évaluer la dernière feuille, il est possible de déduire que son noeud parent aura une valeur inférieure ou égale à son noeud frère (dont la valeur vaut -9). Mais comme le seul frère de son noeud parent vaut également -9, il est possible de déduire que le noeud racine privilégiera de toute façon la valeur -9 à une valeur potentiellement inférieure à -9. Ces deux déductions mènent à considérer l'évaluation de la dernière feuille comme superflue :
+
+```{figure} images/alpha_beta_2.png
+---
+---
+
+L'évaluation de la dernière feuille est superflue.
+```
+
+Ainsi l'évaluation finale de l'arbre ressemblerai à l'image suivante :
+
+```{figure} images/alpha_beta_3.png
+---
+---
+
+Elagage de la dernière feuille.
+```
+
+Il est important de se rendre compte que dans cet exemple, l'élagage peut sembler insgnifiant mais que dans des arbres plus grands et plus touffus, une énorme partie de l'arbre peut être élagué. En effet, une branche élaguée signifie que toutes les branches sous-jacentes le sont aussi. Ainsi, dans la plupart des cas, l'élagage diminue drastiquement le temps d'exécution de l'algorithme.
+
+### Théorie

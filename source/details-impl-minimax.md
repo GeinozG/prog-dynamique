@@ -82,6 +82,12 @@ private:
 
 Les lignes de code en évidence représentent les trois méthodes essentielles qui constitue l'algorithme :
 
-- La méthode minimax(...) est fondamentale, c'est une méthode récursive
-- La méthode evaluatePosition(...)
-- La méthode getMoves(...)
+1) La méthode minimax(...) est fondamentale, c'est une méthode récursive 
+2) La méthode evaluatePosition(...)
+3) La méthode getMoves(...)
+
+## Méthode getMoves()
+
+## Méthode evaluatePosition()
+
+## Méthode minimax()
