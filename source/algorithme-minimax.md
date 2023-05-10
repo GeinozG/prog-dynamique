@@ -83,7 +83,7 @@ Cependant, l'application de Minimax ne se limite pas aux jeux, tout autre probl�
 
 ## Elagage alpha-bêta
 
-L'élage alpha-bêta est une optimisation très efficace de l'algorithme qui permet souvent de multiplier sa vitesse d'exécution par deux, dix ou même cent parfois. Le principe est simple à comprendre, comme son nom le suggère, il implique d'élaguer l'arbre des possibilités en n'évaluant pas tous les noeuds de l'arbre.
+L'élage alpha-bêta est une optimisation très efficace de l'algorithme qui permet souvent de multiplier sa vitesse d'exécution par deux, dix ou même cent parfois. Le principe est simple à comprendre, comme son nom le suggère, il implique d'élaguer l'arbre des possibilités en n'évaluant pas tous les noeuds de l'arbre. Autrement dit, cela permet à l'algorithme d'éviter d'évaluer les noeuds qui ne contribuent pas à trouver le meilleur coup à jouer.
 
 ### Exemple
 
@@ -117,3 +117,7 @@ Elagage de la dernière feuille.
 Il est important de se rendre compte que dans cet exemple, l'élagage peut sembler insgnifiant mais que dans des arbres plus grands et plus touffus, une énorme partie de l'arbre peut être élagué. En effet, une branche élaguée signifie que toutes les branches sous-jacentes le sont aussi. Ainsi, dans la plupart des cas, l'élagage diminue drastiquement le temps d'exécution de l'algorithme.
 
 ### Théorie
+
+Pour comprendre quels sont les branches de l'arbre qui se font élaguer, il implique de comprendre en quoi consiste le nom "alpha-bêta" de l'élagage :
+
+- Alpha représente la valeur maximal que le joueur actuel est garanti d'avoir

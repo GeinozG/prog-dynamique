@@ -1,6 +1,6 @@
 # Détails de l'implémentation dans la classe Minimax
 
-Le chapitre précédent à présenté la structure globale du programme. Ce chapitre à pour objectif de reprendre le code présent dans la classe Minimax et de l'expliquer afin de réellement comprendre comment un tel algorithme peut être implémenter en C++ dans un Puissance 4.
+Le chapitre précédent à présenté la structure globale du programme. Ce chapitre a pour objectif de reprendre le code présent dans la classe Minimax et de l'expliquer afin de réellement comprendre comment un tel algorithme peut être implémenter en C++ dans un Puissance 4.
 
 ## Minimax.h
 
