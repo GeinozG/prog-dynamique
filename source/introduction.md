@@ -4,4 +4,4 @@ De nos jours, l'algorithmie est devenue un élément essentiel de nos vies. Des 
 
 L'objet de ce travail est d'étudier ce fameux algorithme et de l'implémenter dans un jeu de puissance 4 afin d'en tester l'efficacité. Ce jeu est intéressant car il permet d'exploiter la force de l'algorithme sans pour autant que le jeu soit trop complexe. Il est également suffisamment complexe pour que l'implémentation de l'algorithme ait un intérêt.
 
-Ainsi, ce travail présentera d'abord l'algorithme Minimax et expliquera comment il fonctionne. Ensuite, il détaillera la structure du programme qui l'implémente et enfin, il présentera l'implémentation détaillée de l'algoritme.
+Ainsi, ce travail présentera d'abord l'algorithme Minimax et expliquera comment il fonctionne. Ensuite, il détaillera la structure du programme qui l'implémente et enfin, il présentera l'implémentation détaillée de l'algorithme.
