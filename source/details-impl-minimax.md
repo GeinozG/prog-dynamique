@@ -303,4 +303,17 @@ name: recursive_value
 Evaluation récursive de la variable `value`.
 ```
 
-- Ligne 31 : 
+- Ligne 31 : Le code parle de lui même mais pour résumer, la profondeur est nulle (noeud racine) et que la valeur calculé pour le noeud enfant courant est supérieure à la valeur maximale des noeuds enfants déjà évalués, alors le coup à jouer courant est le meilleur. Ainsi la variable `bestMove` prend la valeur de `move`.
+- Ligne 32 : La valeur maximale `maxValue` prend la valeur maximale entre `value` qui vient d'être déterminée et `maxValue`qui est la valeur maximale jusqu'à présent.
+- Ligne 34 : Remplace le coup simulé à la ligne 28 par une case vide.
+- Ligne 36 : La variable `alpha` de l'élagage alpha-bêta qui prend comme valeur `value` si elle est plus grande qu'alpha.
+- Ligne 37 : Comme expliqué dans le chapitre sur l'élagage alpha-bêta, si `beta` est inférieur ou égal à `alpha` alors une coupure à lieu et la valeur `maxValue` est retournée, empêchant ainsi l'exploration des autres noeuds enfants.
+- Ligne 38 : Fin de la boucle `for`, le noeud enfant suivant sera évalué (voir {numref}`recursive_exploration`).
+
+```{figure} images/recursive_value.png
+---
+name: recursive_exploration
+---
+
+Parcours de l'exploration récursive.
+```
