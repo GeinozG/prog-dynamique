@@ -89,32 +89,35 @@ Cependant, l'application de Minimax ne se limite pas aux jeux, tout autre probl�
 
 ## Elagage alpha-bêta
 
-L'élage alpha-bêta est une optimisation très efficace de l'algorithme qui permet souvent de multiplier sa vitesse d'exécution par deux, dix ou même cent parfois. Le principe est simple à comprendre, comme son nom le suggère, il implique d'élaguer l'arbre des possibilités en n'évaluant pas tous les noeuds de l'arbre. Autrement dit, cela permet à l'algorithme d'éviter d'évaluer les noeuds qui ne contribuent pas à trouver le meilleur coup à jouer.
+L'élagage alpha-bêta est une optimisation très efficace de l'algorithme qui permet souvent de multiplier sa vitesse d'exécution par deux, dix ou même cent parfois. Le principe est simple à comprendre. Comme son nom le suggère, il implique d'élaguer l'arbre des possibilités en n'évaluant pas tous les noeuds de l'arbre. Autrement dit, cela permet à l'algorithme d'éviter d'évaluer les noeuds qui ne contribuent pas à trouver le meilleur coup à jouer.
 
 ### Exemple
 
-Comme un exemple vaut souvent plus qu'une longue explication, reprenons en considération un nouvel arbre dont les feuilles ont déjà été évalué par la fonction d'évaluation :
+Comme un exemple est souvent plus parlant qu'une longue explication, reprenons en considération un nouvel arbre dont les feuilles ont déjà été évaluées par la fonction d'évaluation (voir {numref}`alpha_beta_1`).
 
 ```{figure} images/alpha_beta_1.png
 ---
+name: alpha_beta_1
 ---
 
 Exemple d'un arbre dont les feuilles ont toutes été évaluées.
 ```
 
-Dans cet exemple, une feuille a été évalué inutilement, il s'agit de la dernière feuille à droite. En effet, sachant que l'ordinateur joue les noeuds bleus et l'adversaire les rouges, chacun cherche respectivement à maximiser ou minimiser le score. Ainsi, au moment d'évaluer la dernière feuille, il est possible de déduire que son noeud parent aura une valeur inférieure ou égale à son noeud frère (dont la valeur vaut -9). Mais comme le seul frère de son noeud parent vaut également -9, il est possible de déduire que le noeud racine privilégiera de toute façon la valeur -9 à une valeur potentiellement inférieure à -9. Ces deux déductions mènent à considérer l'évaluation de la dernière feuille comme superflue :
+Dans cet exemple, une feuille a été évaluée inutilement, il s'agit de la dernière feuille à droite. En effet, sachant que les noeuds maximiseurs sont bleus et que les noeuds minimiseurs sont rouges, au moment d'évaluer la dernière feuille, il est possible de déduire que son noeud parent aura une valeur inférieure ou égale à son noeud frère (dont la valeur vaut -9). Mais comme le seul frère de son noeud parent vaut également -9, il est possible de déduire que le noeud racine privilégiera de toute façon la valeur -9 à une valeur potentiellement inférieure à -9. Ces deux déductions mènent à considérer l'évaluation de la dernière feuille comme superflue (voir {numref}`alpha_beta_2`).
 
 ```{figure} images/alpha_beta_2.png
 ---
+name: alpha_beta_2
 ---
 
 L'évaluation de la dernière feuille est superflue.
 ```
 
-Ainsi l'évaluation finale de l'arbre ressemblerai à l'image suivante :
+Ainsi l'évaluation finale de l'arbre ressemblerais à la {numref}`Figure %s <alpha_beta_3>` :
 
 ```{figure} images/alpha_beta_3.png
 ---
+name: alpha_beta_3
 ---
 
 Elagage de la dernière feuille.
