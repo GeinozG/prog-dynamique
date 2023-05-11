@@ -231,44 +231,44 @@ int Minimax::minimax(
     std::vector<Vector2> possibleMoves = getMoves(position);
     BufBoard childPosition = position;
 
-    if (player == m_computerType)
+    if (player == m_computerType) // maximizer nodes
     {
-        int maxWeight = MINUS_INFINITY;
+        int maxValue = MINUS_INFINITY;
 
         for (Vector2 move : possibleMoves)
         {
             childPosition.squares[move.y][move.x] = player;
 
-            int weight = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_humanType);
-            if (depth == 0 && weight > maxWeight) bestMove = move;
-            maxWeight = std::max(weight, maxWeight);
+            int value = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_humanType);
+            if (depth == 0 && value > maxValue) bestMove = move;
+            maxValue = std::max(value, maxValue);
 
             childPosition.squares[move.y][move.x] = SquareType::Empty;
 
-            alpha = std::max(weight, alpha);
-            if (beta <= alpha) return maxWeight;
+            alpha = std::max(value, alpha);
+            if (beta <= alpha) return maxValue;
         }
 
-        return maxWeight;
+        return maxValue;
     }
-    else if (player == m_humanType)
+    else if (player == m_humanType) // minimizer nodes
     {
-        int minWeight = PLUS_INFINITY;
+        int minValue = PLUS_INFINITY;
 
         for (Vector2 move : possibleMoves)
         {
             childPosition.squares[move.y][move.x] = player;
 
-            int weight = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_computerType);
-            minWeight = std::min(weight, minWeight);
+            int value = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_computerType);
+            minValue = std::min(value, minValue);
 
             childPosition.squares[move.y][move.x] = SquareType::Empty;
 
-            beta = std::min(weight, beta);
-            if (beta <= alpha) return minWeight;
+            beta = std::min(value, beta);
+            if (beta <= alpha) return minValue;
         }
 
-        return minWeight;
+        return minValue;
     }
 }
 ```
@@ -281,4 +281,16 @@ De la ligne 1 à 8, il s'agit de la signature de la méthode avec tous ses param
 
 Si le noeud courant est effectivement un noeud feuille, alors la ligne 16 retourne une évaluation statique de l'état du jeu grâce à la méthode `evaluatePosition()`.
 
-Pour continuer, si le noeud courant est non-feuille, les lignes 19 et 20 préparent l'exploration récursive des noeuds. A la ligne 19, la variable `possibleMoves` reçoit tous les coups à jouer possibles grâce à la méthode `getMoves()`. Quant à la ligne 20, la variable `childPosition` reçoit une copie de la position courante afin d'être modifiée par la suite.
+Pour continuer, si le noeud courant est non-feuille, les lignes 19 et 20 préparent l'exploration récursive de l'arbre. A la ligne 19, la variable `possibleMoves` reçoit tous les coups à jouer possibles grâce à la méthode `getMoves()`. Quant à la ligne 20, la variable `childPosition` reçoit une copie de la position courante afin d'être modifiée par la suite.
+
+La suite du code de la méthode peut globalement être décomposée en deux parties :
+
+1) De la ligne 22 à 41, c'est la partie qui s'occupe des noeuds maximiseurs
+2) De la ligne 42 à 60, la partie des noeuds minimiseurs
+
+Pour la première partie, le code opère ainsi :
+
+- Ligne 24 : Initialise la variable `maxValue`,qui représente la valeur finale du noeud, à la constante `MINUS_INFINITY` qui représente théoriquement la valeur la plus négative possible. Ainsi, la valeur par défaut de chaque noeud maximiseur ne sera jamais plus élevée que la valeur maximale calculée.
+- Ligne 26 : La boucle `for` parcourt tous les coups possibles dans une variable `move` qui contient à chaque itération de boucle le coup à jouer.
+- Ligne 28 : Le programme modifie la variable `childPosition` afin de simuler le coup du joueur passé en paramètre contenu dans la variable `move`. `childPosition` correspond donc maintenant à l'état d'un noeud enfant du noeud courant.
+- Ligne 30 : La variable `value` correspond à la valeur du noeud enfant dont l'état est celui contenu dans la variable `childPosition`. C'est là que la récursivité à lieu. Pour affecter la valeur adéquate à `value`, il faut lui donner la valeur retournée par la fonction `minimax()`. Toutefois, il faut cette fois lui passer en paramètre `childPosition`, une profondeur incrémentée de 1 (`depth + 1`) et un nombre de coups possibles restants décrémenté de 1 (`maxMoves - 1`).
