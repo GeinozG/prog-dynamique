@@ -70,11 +70,13 @@ Attribution des valeurs à chaque noeud non-feuille.
 
 Maintenant que chaque noeud à une valeur, le joueur maximiseur n'a plus qu'à jouer le coup qui maximisera la valeur de son futur état. En l'occurence, dans l'exemple de la {numref}`Figure %s <minimax_value>`, le joueur maximiseur a intérêt à jouer la coup qui l'amène au noeud enfant de gauche (score=4) car c'est celui qui a la valeur la plus élevée parmi tous ses enfants.
 
-Il est important de préciser qu'une évaluation statique des enfants directs du noeud racine (note de bas de page !!!) aurait pu générer un score beaucoup plus élevé au noeud de droite (score=-5)  et inférieur au noeud de gauche (score=4) car la fonction d'évaluation ne prend pas en compte les coups qui suivent. Ainsi, le joueur aurait pu prendre une décision qui se serait révélée défavorable quelques coups plus tard. C'est donc tout le principe de l'algorithme que d'éviter ce scénario.
+```{warning}
+A ce stade, il peut être tentant de se demander pourquoi le programme n'effectue pas simplement une évaluation statique (purement positionnel par la fonction d'évaluation) des enfants directs du noeud racine. Ainsi, le joueur maximiseur n'aurait qu'à choisir le meilleur coup directement. C'est une fausse bonne idée. En effet, une fonction d'évaluation parfaite saurait attribuer une valeur exacte à un état quelconque du jeu, mais très souvent une telle fonction n'existe pas (encore). Dans ces conditions, une évaluation pourrait donner une valeur très généreuse à un état du jeu, mais quelques coups plus tard, il s'avèrerait que le coup jouer mène à une défaite par exemple. C'est pourquoi la recherche en profondeur de l'algorithme Minimax est indispensable dans ces conditions.
+```
 
 ## Champ d'application
 
-A présent que le fonctionnement de l'algorithme a été expliqué, il convient de préciser son champ d'application. Comme mentionné précédemment, l'algorithme à besoin ne peut être employé que pour des jeux à somme nulle. Chaque le moindre avantage d'un joueur doit représenter un désavantage équivalent pour l'adversaire. De plus, en l'état, l'algorithme n'est adapté qu'à des jeux opposant deux joueurs. Il est facile de trouver des gens qui remplissent ces deux critères :
+A présent que le fonctionnement de l'algorithme a été expliqué, il convient de préciser son champ d'application. Comme mentionné précédemment, l'algorithme ne peut être employé que pour des jeux à somme nulle. Le moindre avantage d'un joueur doit représenter un désavantage équivalent pour l'adversaire. De plus, l'algorithme n'est adapté qu'à des jeux opposant deux joueurs. Les jeux qui remplissent ces deux critères sont nombreux :
 
 - Echecs
 - Puissance 4
@@ -83,7 +85,7 @@ A présent que le fonctionnement de l'algorithme a été expliqué, il convient 
 - Jeu de Go
 - Jeu de dames
 
-Cependant, l'application de Minimax ne se limite pas aux jeux, tout autre problème d'optimisation remplissant les deux critères sont des candidats potentiels à l'implémentation de l'algorithme.
+Cependant, l'application de Minimax ne se limite pas aux jeux, tout autre problème d'optimisation remplissant les deux critères énoncés sont des candidats potentiels à l'implémentation de l'algorithme.
 
 ## Elagage alpha-bêta
 
