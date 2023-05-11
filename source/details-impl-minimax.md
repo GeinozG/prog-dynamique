@@ -75,8 +75,8 @@ private:
         { 3, 4, 5, 7, 5, 4, 3 }
     };
 
-    SquareType m_humanType;
-    SquareType m_computerType;
+    SquareType m_minimizerPlayer;
+    SquareType m_maximizerPlayer;
 };
 ```
 
@@ -205,11 +205,10 @@ Enfin, les lignes en évidences 20 à 22 parlent d'elle-même : La ligne 20 inte
 
 ### minimax()
 
-Pour finir, il reste à comprendre l'implémentation de la méthode récursive minimax(), la plus intéressante :
+Pour finir, il reste à comprendre l'implémentation de la méthode récursive `minimax()`, la plus intéressante :
 
 ```{code-block} cpp
 ---
-emphasize-lines: 14-17, 19, 26
 linenos: true
 ---
 int Minimax::minimax(
@@ -233,7 +232,7 @@ int Minimax::minimax(
     std::vector<Vector2> possibleMoves = getMoves(position);
     BufBoard childPosition = position;
 
-    if (player == m_computerType) // maximizer nodes
+    if (player == m_maximizerPlayer) // maximizer nodes
     {
         int maxValue = MINUS_INFINITY;
 
@@ -241,7 +240,7 @@ int Minimax::minimax(
         {
             childPosition.squares[move.y][move.x] = player;
 
-            int value = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_humanType);
+            int value = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_minimizerPlayer);
             if (depth == 0 && value > maxValue) bestMove = move;
             maxValue = std::max(value, maxValue);
 
@@ -253,7 +252,7 @@ int Minimax::minimax(
 
         return maxValue;
     }
-    else if (player == m_humanType) // minimizer nodes
+    else if (player == m_minimizerPlayer) // minimizer nodes
     {
         int minValue = PLUS_INFINITY;
 
@@ -261,7 +260,7 @@ int Minimax::minimax(
         {
             childPosition.squares[move.y][move.x] = player;
 
-            int value = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_computerType);
+            int value = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_maximizerPlayer);
             minValue = std::min(value, minValue);
 
             childPosition.squares[move.y][move.x] = SquareType::Empty;
