@@ -70,7 +70,7 @@ Attribution des valeurs à chaque noeud non-feuille.
 
 Maintenant que chaque noeud à une valeur, le joueur maximiseur n'a plus qu'à jouer le coup qui maximisera la valeur de son futur état. En l'occurence, dans l'exemple de la {numref}`Figure %s <minimax_value>`, le joueur maximiseur a intérêt à jouer la coup qui l'amène au noeud enfant de gauche (score=4) car c'est celui qui a la valeur la plus élevée parmi tous ses enfants.
 
-```{warning}
+```{attention}
 A ce stade, il peut être tentant de se demander pourquoi le programme n'effectue pas simplement une évaluation statique (purement positionnel par la fonction d'évaluation) des enfants directs du noeud racine. Ainsi, le joueur maximiseur n'aurait qu'à choisir le meilleur coup directement. C'est une fausse bonne idée. En effet, une fonction d'évaluation parfaite saurait attribuer une valeur exacte à un état quelconque du jeu, mais très souvent une telle fonction n'existe pas (encore). Dans ces conditions, une évaluation pourrait donner une valeur très généreuse à un état du jeu, mais quelques coups plus tard, il s'avèrerait que le coup jouer mène à une défaite par exemple. C'est pourquoi la recherche en profondeur de l'algorithme Minimax est indispensable dans ces conditions.
 ```
 
@@ -85,7 +85,7 @@ A présent que le fonctionnement de l'algorithme a été expliqué, il convient 
 - Jeu de Go
 - Jeu de dames
 
-Cependant, l'application de Minimax ne se limite pas aux jeux, tout autre problème d'optimisation remplissant les deux critères énoncés sont des candidats potentiels à l'implémentation de l'algorithme.
+Cependant, l'application de l'algorithme Minimax ne se limite pas aux jeux, tout autre problème d'optimisation remplissant les deux critères énoncés sont des candidats potentiels à l'implémentation de l'algorithme.
 
 ## Elagage alpha-bêta
 
@@ -129,14 +129,12 @@ Il est important de se rendre compte que dans cet exemple, l'élagage peut sembl
 
 Pour comprendre quels sont les branches de l'arbre qui se font élaguer, il implique de comprendre en quoi consiste le nom "alpha-bêta" de l'élagage :
 
-- Alpha représente la valeur maximal que le joueur actuel est garanti d'avoir à chaque étape de l'évaluation de l'arbre.
-- Bêta représente exactement le contraire d'alpha, c'est-à-dire la valeur minimal que l'adversaire est garanti d'avoir à chaque étape.
+- Alpha représente la valeur maximale que le joueur maximiseur est garanti d'avoir à chaque étape de l'évaluation de l'arbre.
+- Bêta représente exactement le contraire d'alpha, c'est-à-dire la valeur minimal que le joueur minimiseur est garanti d'avoir à chaque étape.
 
-Ces deux valeurs sont donc mise à jour après chaque évaluation selon ces critères, à chaque évaluation d'un état où le prochain coup revient à :
+Ces deux valeurs sont donc misent à jour après chaque évaluation si certaines conditions sont remplies. A chaque évaluation d'un état où le prochain coup revient au :
 
-- Ordinateur : si la valeur évalué pour chaque enfant est *supérieur à alpha*, alors *alpha* prend cette valeur. Sinon, il est inutile de mettre à jour la valeur *d'alpha* car le *maximum* garanti au *joueur* est plus *élevé*.
-- Adversaire : si la valeur évalué pour chaque enfant est *inférieur à bêta*, alors *bêta* prend cette valeur. Sinon, il est inutile de mettre à jour la valeur de *bêta* car le *minimum* garanti à *l'adversaire* est plus *petit*.
+- Joueur maximiseur : si la valeur évaluée pour chaque enfant est *supérieur à alpha*, alors *alpha* prend cette valeur. Sinon, il est inutile de mettre à jour la valeur *d'alpha* car le *maximum* garanti au *joueur maximiseur* est plus *élevé*.
+- Joueur minimiseur : si la valeur évaluée pour chaque enfant est *inférieur à bêta*, alors *bêta* prend cette valeur. Sinon, il est inutile de mettre à jour la valeur de *bêta* car le *minimum* garanti au *joueur minimiseur* est plus *bas*.
 
-Il est important de se rappeler que l'ordinateur cherche toujours à maximiser le score de ses états contrairement à l'adversaire qui cherche à le minimiser.
-
-Ainsi, un élagage a lieu de se produire lorsque, pour chaque noeud, bêta est inférieur ou égal à alpha. En effet, pour un noeud maximiseur, si bêta est inférieur ou égal à alpha, cela signifie que la valeur du noeud courant est au moins égal à alpha. Donc bêta (la meilleure valeur pour le noeud minimiseur parent) étant inférieur signifie qu'un meilleur coup était possible pour le noeud minimiseur parent. Evaluer les autres noeuds enfants devient donc inutile puisque le noeud minimiseur parent n'a pas intérêt à jouer le coup du noeud à l'étude (coupure alpha). Quant aux noeuds minimiseurs, si bêta est inférieur ou égal à alpha, cela signifie que la valeur du noeud courant est au plus égal à bêta. Donc bêta étant inférieur à alpha signifie que le noeud maximiseur parent a dans l'un de ses noeuds enfants explorés une valeur supérieur au noeud courant. Donc le joueur maximiseur ne va jamais prendre le chemin de l'arbre qui mène au noeud courant. Encore une fois, un élagage (coupure bêta) peut se faire dans ces conditions sans conséquence.
+Ainsi, un élagage a lieu de se produire lorsque, pour chaque noeud, bêta est inférieur ou égal à alpha. En effet, pour un noeud maximiseur, si bêta est inférieur ou égal à alpha, cela signifie que la valeur du noeud courant est au moins égal à alpha. Donc bêta (la meilleure valeur pour le noeud minimiseur parent) étant inférieur, signifie qu'un meilleur coup était possible pour le noeud minimiseur parent. Evaluer les autres noeuds enfants devient donc inutile puisque le noeud minimiseur parent n'a pas intérêt à jouer le coup du noeud courant (coupure alpha). Quant aux noeuds minimiseurs, si bêta est inférieur ou égal à alpha, cela signifie que la valeur du noeud courant est au plus égal à bêta. Donc bêta étant inférieur à alpha signifie que le noeud maximiseur parent a dans l'un de ses noeuds enfants explorés, une valeur supérieure au noeud courant. Donc le joueur maximiseur ne va jamais prendre le chemin de l'arbre qui mène au noeud courant. Encore une fois, un élagage peut se faire dans ces conditions sans conséquence (coupure bêta).
