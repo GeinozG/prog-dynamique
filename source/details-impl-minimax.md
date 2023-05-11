@@ -199,9 +199,17 @@ Table d'évaluation statique du Puissance 4.
 
 Les cases au centre ont évidemment une valeur statique plus grande que les cases vers les bords car elles offrent un plus grand potentiel pour aligner quatre jetons.
 
+Enfin, les lignes 20 à 22 en évidences parlent d'elle-même : La ligne 20 interroge la classe Board en lui demandant si un joueur à gagner. Les deux lignes suivantes testent le type du joueur qui a gagné. Si c'est l'ordinateur qui gagne dans cet état du jeu, alors la valeur retournée augmentera d'un coup de 100 car la victoire est le but recherché et il faut le faire comprendre à l'algorithme. A la ligne suivante, c'est tout le contraire. Si c'est le joueur humain qui gagne, alors la valeur diminuera d'un coup de 100 car ça signifie la pire fin pour l'algorithme, il faut également le lui faire comprendre. Dans tous les autres cas (si aucun joueur n'a gagné), aucune alteration brusque du score n'est nécessaire et la méthode retourne la valeur.
+
 ### minimax()
 
+Pour finir, il reste à comprendre l'implémentation de la méthode récursive minimax(), la plus intéressante :
+
 ```{code-block} cpp
+---
+emphasize-lines: 14-17, 19, 26
+linenos: true
+---
 int Minimax::minimax(
     BufBoard const& position,
     Vector2 & bestMove,
@@ -264,3 +272,5 @@ int Minimax::minimax(
     }
 }
 ```
+
+De la ligne 1 à 8, il s'agit de la signature de la méthode avec tous ses paramètres.
