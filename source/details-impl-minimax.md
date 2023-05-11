@@ -223,7 +223,7 @@ int Minimax::minimax(
 
     SquareType winner = m_board.isWin(position);
 
-    if (depth == 0 || maxMoves == 0 || winner != SquareType::Empty)
+    if (depth == SEARCH_DEPTH || maxMoves == 0 || winner != SquareType::Empty)
     {
         return evaluatePosition(position, player);
     }
@@ -239,8 +239,8 @@ int Minimax::minimax(
         {
             childPosition.squares[move.y][move.x] = player;
 
-            int weight = minimax(childPosition, bestMove, depth - 1, maxMoves - 1, alpha, beta, m_humanType);
-            if (depth == SEARCH_DEPTH && weight > maxWeight) bestMove = move;
+            int weight = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_humanType);
+            if (depth == 0 && weight > maxWeight) bestMove = move;
             maxWeight = std::max(weight, maxWeight);
 
             childPosition.squares[move.y][move.x] = SquareType::Empty;
@@ -259,7 +259,7 @@ int Minimax::minimax(
         {
             childPosition.squares[move.y][move.x] = player;
 
-            int weight = minimax(childPosition, bestMove, depth - 1, maxMoves - 1, alpha, beta, m_computerType);
+            int weight = minimax(childPosition, bestMove, depth + 1, maxMoves - 1, alpha, beta, m_computerType);
             minWeight = std::min(weight, minWeight);
 
             childPosition.squares[move.y][move.x] = SquareType::Empty;
@@ -273,4 +273,12 @@ int Minimax::minimax(
 }
 ```
 
-De la ligne 1 à 8, il s'agit de la signature de la méthode avec tous ses paramètres.
+De la ligne 1 à 8, il s'agit de la signature de la méthode avec tous ses paramètres. Ensuite, à la ligne 14, la méthode teste si le noeud courant est un noeud feuille selon trois critères :
+
+1) Si la profondeur courante est égale à la constante `SEARCH_DEPTH`, qui correspond à la profondeur de recherche maximale fixée.
+2) Si le nombre de coups possibles restant à jouer est nul (la grille est pleine)
+3) Si un joueur a gagné (`SquareType::Empty` est le type retourné par la méthode `isWin()` de la classe Board si aucun joueur n'a gagné)
+
+Si le noeud courant est effectivement un noeud feuille, alors la ligne 16 retourne une évaluation statique de l'état du jeu grâce à la méthode `evaluatePosition()`.
+
+Pour continuer, si le noeud courant est non-feuille, les lignes 19 et 20 préparent l'exploration récursive des noeuds. A la ligne 19, la variable `possibleMoves` reçoit tous les coups à jouer possibles grâce à la méthode `getMoves()`. Quant à la ligne 20, la variable `childPosition` reçoit une copie de la position courante afin d'être modifiée par la suite.
