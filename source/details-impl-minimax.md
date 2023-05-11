@@ -278,7 +278,7 @@ De la ligne 1 à 8, il s'agit de la signature de la méthode avec tous ses param
 
 1) Si la profondeur courante est égale à la constante `SEARCH_DEPTH`, qui correspond à la profondeur de recherche maximale fixée.
 2) Si le nombre de coups possibles restant à jouer est nul (la grille est pleine)
-3) Si un joueur a gagné (`SquareType::Empty` est le type retourné par la méthode `isWin()` de la classe Board si aucun joueur n'a gagné)
+3) Si un joueur a gagné (`SquareType::Empty` est le type retourné par la méthode `isWin()` de la classe `Board` si aucun joueur n'a gagné)
 
 Si le noeud courant est effectivement un noeud feuille, alors la ligne 16 retourne une évaluation statique de l'état du jeu grâce à la méthode `evaluatePosition()`.
 
