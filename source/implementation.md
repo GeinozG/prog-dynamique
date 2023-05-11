@@ -36,19 +36,20 @@ Relation de chaque grande classe par rapport aux autres.
 ```
 
 ```{note}
-Chaque classe représentée dans le diagramme n'est instanciée qu'une seule fois dans le programme. Par exemple, la classe Board appartenant aux classes Game et Minimax n'est qu'une seule et même instance partagée entre ces deux classes par références. De plus, la classe Game est celle qui possède en tant que membres toutes les autres et qui les instancie. Tel un chef d'orchestre, cette classe s'occupe de faire tourner le jeu, de gérer le tour des joueurs et d'informer l'utilisateur lorsque le jeu est terminé.
+Chaque classe représentée dans le diagramme n'est instanciée qu'une seule fois dans le programme. Par exemple, la classe `Board` appartenant aux classes `Game` et `Minimax` n'est qu'une seule et même instance partagée entre ces deux classes par références. De plus, la classe `Game` est celle qui possède en tant que membres toutes les autres et qui les instancie. Tel un chef d'orchestre, cette classe s'occupe de faire tourner le jeu, de gérer le tour des joueurs et d'informer l'utilisateur lorsque le jeu est terminé.
 ```
 
 ### Fenêtre du jeu
 
-En ce qui concerne la partie du programme qui gère la fenêtre du jeu, ce sont les classes Window et GraphicsManager qui s'en occupent.
+En ce qui concerne la partie du programme qui gère la fenêtre du jeu, ce sont les classes `Window` et `GraphicsManager` qui s'en occupent.
 
 #### Classe Window
 
-La classe Window représente une abstraction très élémentaire d'une fenêtre. Son seul but est d'ouvrir une nouvelle fenêtre et de l'actualiser afin qu'elle ne plante pas. Ainsi, lorsque la classe est instancié, elle fait les démarches nécessaires pour ouvrir une fenêtre de la taille désirée et ferme cette fenêtre au moment où l'instance est détruite. Enfin, il suffit de l'actualiser grâce à sa méthode update() :
+La classe `Window` représente une abstraction très élémentaire d'une fenêtre. Son seul but est d'ouvrir une nouvelle fenêtre et de l'actualiser afin qu'elle ne plante pas. Ainsi, lorsque la classe est instanciée, elle fait les démarches nécessaires pour ouvrir une fenêtre de la taille désirée et ferme cette fenêtre au moment où l'instance est détruite. Enfin, il suffit de l'actualiser grâce à sa méthode `update()` (voir {numref}`window_class`).
 
 ```{figure} images/window_class.png
 ---
+name: window_class
 ---
 
 Représentation schématique de la classe Window.
@@ -56,7 +57,7 @@ Représentation schématique de la classe Window.
 
 #### Classe GraphcisManager
 
-Quand à elle, la classe GraphicsManager sert concrètement à gérer tout ce qui est chargement des textures et affichage des textures sur la fenêtre. Logiquement, cette classe à besoin d'avoir une référence à une instance de Window afin d'y afficher ses textures :
+Quand à elle, la classe `GraphicsManager` sert concrètement à gérer tout ce qui est chargement des textures et affichage des textures sur la fenêtre. Logiquement, cette classe à besoin d'avoir une référence à une instance de `Window` afin d'y afficher ses textures :
 
 ```{figure} images/graphics_manager_class.png
 ---
@@ -67,23 +68,25 @@ Représentation schématique de la classe GraphicsManager.
 
 ### Grille du jeu
 
-A propos de la partie du programme qui gère la grille du Puissance 4, c'est la classe Board qui s'en occupe. Cette classe est la représentation abstraite du jeu et de ses règles. Concrètement, elle stocke la grille du jeu en mémoire et expose des méthodes qui permettent de la modifier en respectant les règles du jeu. Des méthodes permettent également d'obtenir des informations sur la grille du jeu (l'algorithme a besoin de savoir si un joueur a gagné ou si une case de la grille est vide par exemple) :
+A propos de la partie du programme qui gère la grille du Puissance 4, c'est la classe `Board` qui s'en occupe. Cette classe est la représentation abstraite du jeu et de ses règles. Concrètement, elle stocke la grille du jeu en mémoire et expose des méthodes qui permettent de la modifier en respectant les règles du jeu. Certaines de ses méthodes permettent également d'obtenir des informations sur la grille du jeu ; l'algorithme a besoin de savoir si un joueur a gagné ou si une case de la grille est vide par exemple (voir {numref}`board_class`).
 
 ```{figure} images/board_class.png
 ---
+name: board_class
 ---
 
 Représentation schématique de la classe Board.
 ```
 
-Comme la classe Board est capable de dessiner sa grille de jeu elle-même, elle possède une référence à la classe GraphicsManager qui expose des méthodes pour charger des textures et dessiner sur la fenêtre de la classe Window.
+Comme la classe `Board` est capable de dessiner sa grille de jeu elle-même, elle possède une référence à la classe `GraphicsManager` qui expose des méthodes pour charger des textures et dessiner sur la fenêtre gérée par la classe `Window`.
 
 ### Algorithme Minimax
 
-Pour finir, c'est évidemment la classe Minimax qui s'occupe de la dernière partie du programme. Elle implémente l'algorithme Minimax, une fonction d'évaluation adaptée au Puissance 4 et optimise sa recherche avec l'élagage alpha-bêta. En outre, la classe possède une référence à la classe Board afin d'obtenir toutes les informations de la grille du jeu nécessaires à l'algorithme et modifier la grille pour jouer un coup :
+Pour finir, c'est évidemment la classe `Minimax` qui s'occupe de la dernière partie du programme. Elle implémente l'algorithme Minimax, une fonction d'évaluation adaptée au Puissance 4 et optimise sa recherche avec l'élagage alpha-bêta. En outre, la classe possède une référence à la classe `Board` afin d'obtenir toutes les informations de la grille du jeu nécessaires à l'algorithme et modifier la grille pour jouer un coup (voir {numref}`minimax_class`).
 
 ```{figure} images/minimax_class.png
 ---
+name: minimax_class
 ---
 
 Représentation schématique de la classe Minimax.
