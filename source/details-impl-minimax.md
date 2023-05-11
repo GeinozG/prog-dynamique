@@ -293,4 +293,14 @@ Pour la première partie, le code opère ainsi :
 - Ligne 24 : Initialise la variable `maxValue`,qui représente la valeur finale du noeud, à la constante `MINUS_INFINITY` qui représente théoriquement la valeur la plus négative possible. Ainsi, la valeur par défaut de chaque noeud maximiseur ne sera jamais plus élevée que la valeur maximale calculée.
 - Ligne 26 : La boucle `for` parcourt tous les coups possibles dans une variable `move` qui contient à chaque itération de boucle le coup à jouer.
 - Ligne 28 : Le programme modifie la variable `childPosition` afin de simuler le coup du joueur passé en paramètre contenu dans la variable `move`. `childPosition` correspond donc maintenant à l'état d'un noeud enfant du noeud courant.
-- Ligne 30 : La variable `value` correspond à la valeur du noeud enfant dont l'état est celui contenu dans la variable `childPosition`. C'est là que la récursivité à lieu. Pour affecter la valeur adéquate à `value`, il faut lui donner la valeur retournée par la fonction `minimax()`. Toutefois, il faut cette fois lui passer en paramètre `childPosition`, une profondeur incrémentée de 1 (`depth + 1`) et un nombre de coups possibles restants décrémenté de 1 (`maxMoves - 1`).
+- Ligne 30 : La variable `value` correspond à la valeur du noeud enfant dont l'état est celui contenu dans la variable `childPosition`. C'est là que la récursivité à lieu. Pour affecter la valeur adéquate à `value`, il faut lui donner la valeur retournée par la méthode `minimax()`. Toutefois, il faut cette fois lui passer en paramètre `childPosition`, une profondeur incrémentée de 1 (`depth + 1`) et un nombre de coups possibles restants décrémenté de 1 (`maxMoves - 1`). Ainsi, la méthode se répète jusqu'à arriver à un noeud feuille. Dans ce cas, la ligne 16 est exécutée et la variable `value` du noeud parent du noeud feuille obtient la valeur statique de ce dernier (voir {numref}`recursive_value`).
+
+```{figure} images/recursive_value.png
+---
+name: recursive_value
+---
+
+Evaluation récursive de la variable `value`.
+```
+
+- Ligne 31 : 
