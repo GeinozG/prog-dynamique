@@ -311,4 +311,4 @@ Evaluation récursive de la variable `value`.
 - Ligne 37 : Comme expliqué dans le chapitre sur l'élagage alpha-bêta, si `beta` est inférieur ou égal à `alpha` alors une coupure à lieu et la valeur `maxValue` est retournée, empêchant ainsi l'exploration des autres noeuds enfants.
 - Ligne 38-39 : Fin de l'itération de la boucle `for`, le noeud enfant suivant sera évalué jusqu'à qu'il n'y en ait plus. `maxValue` est finalement retournée.
 
-La deuxième partie de la méthode est pratiquement la même sauf qu'elle cherchera à à minimiser la valeur retournée et la valeur de `beta`.
+La deuxième partie de la méthode est pratiquement la même sauf qu'elle cherchera à minimiser la valeur retournée et la valeur de `beta`.
