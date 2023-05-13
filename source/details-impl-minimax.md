@@ -294,7 +294,7 @@ Pour la première partie, le code opère ainsi :
 - Ligne 24 : Initialise la variable `maxValue`,qui représente la valeur finale du noeud, à la constante `MINUS_INFINITY` qui représente théoriquement la valeur la plus négative possible. Ainsi, la valeur par défaut de chaque noeud maximiseur ne sera jamais plus élevée que la valeur maximale calculée.
 - Ligne 26 : La boucle `for` parcourt tous les coups possibles dans une variable `move` qui contient à chaque itération de boucle le coup à jouer.
 - Ligne 28 : Le programme modifie la variable `childPosition` afin de simuler le coup du joueur passé en paramètre contenu dans la variable `move`. `childPosition` correspond donc maintenant à l'état d'un noeud enfant du noeud courant.
-- Ligne 30 : La variable `value` correspond à la valeur du noeud enfant dont l'état est celui contenu dans la variable `childPosition`. C'est là que la récursivité à lieu. Pour affecter la valeur adéquate à `value`, il faut lui donner la valeur retournée par la méthode `minimax()`. Toutefois, il faut cette fois lui passer en paramètre `childPosition`, une profondeur incrémentée de 1 (`depth + 1`) et un nombre de coups possibles restants décrémenté de 1 (`maxMoves - 1`). Ainsi, la méthode se répète jusqu'à arriver à un noeud feuille. Dans ce cas, la ligne 16 est exécutée et la variable `value` du noeud parent du noeud feuille obtient la valeur statique de ce dernier (voir {numref}`recursive_value`).
+- Ligne 30 : La variable `value` correspond à la valeur du noeud enfant dont l'état est celui contenu dans la variable `childPosition`. C'est là que la récursivité a lieu. Pour affecter la valeur adéquate à `value`, il faut lui donner la valeur retournée par la méthode `minimax()`. Toutefois, il faut cette fois lui passer en paramètre `childPosition`, une profondeur incrémentée de 1 (`depth + 1`) et un nombre de coups possibles restants décrémenté de 1 (`maxMoves - 1`). Ainsi, la méthode se répète jusqu'à arriver à un noeud feuille. Dans ce cas, la ligne 16 est exécutée et la variable `value` du noeud parent du noeud feuille obtient la valeur statique de ce dernier (voir {numref}`recursive_value`).
 
 ```{figure} images/recursive_value.png
 ---
@@ -304,11 +304,11 @@ name: recursive_value
 Evaluation récursive de la variable `value`.
 ```
 
-- Ligne 31 : Le code parle de lui même mais pour résumer, la profondeur est nulle (noeud racine) et que la valeur calculé pour le noeud enfant courant est supérieure à la valeur maximale des noeuds enfants déjà évalués, alors le coup à jouer courant est le meilleur. Ainsi la variable `bestMove` prend la valeur de `move`.
+- Ligne 31 : Le code parle de lui même mais pour résumer, si la profondeur est nulle (noeud racine) et que la valeur calculée pour le noeud enfant courant est supérieure à la valeur maximale des noeuds enfants déjà évalués, alors le coup à jouer courant est le meilleur. Ainsi la variable `bestMove` prend la valeur de `move`.
 - Ligne 32 : La valeur maximale `maxValue` prend la valeur maximale entre `value` qui vient d'être déterminée et `maxValue`qui est la valeur maximale jusqu'à présent.
 - Ligne 34 : Remplace le coup simulé à la ligne 28 par une case vide.
 - Ligne 36 : La variable `alpha` de l'élagage alpha-bêta qui prend comme valeur `value` si elle est plus grande qu'alpha.
-- Ligne 37 : Comme expliqué dans le chapitre sur l'élagage alpha-bêta, si `beta` est inférieur ou égal à `alpha` alors une coupure à lieu et la valeur `maxValue` est retournée, empêchant ainsi l'exploration des autres noeuds enfants.
+- Ligne 37 : Comme expliqué dans le chapitre sur l'élagage alpha-bêta, si `beta` est inférieure ou égal à `alpha` alors une coupure à lieu et la valeur `maxValue` est retournée, empêchant ainsi l'exploration des autres noeuds enfants.
 - Ligne 38-39 : Fin de l'itération de la boucle `for`, le noeud enfant suivant sera évalué jusqu'à qu'il n'y en ait plus. `maxValue` est finalement retournée.
 
 La deuxième partie de la méthode est pratiquement la même sauf qu'elle cherchera à minimiser la valeur retournée et la valeur de `beta`.
