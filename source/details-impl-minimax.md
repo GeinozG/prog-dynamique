@@ -13,7 +13,7 @@ emphasize-lines: 26 - 34, 43, 51
 class Minimax
 {
 public:
-    Minimax(Board & board, SquareType humanType, SquareType computerType);
+    Minimax(Board & board, SquareType minimizerPlayer, SquareType maximizerPlayer);
     ~Minimax();
 
     // Go through minimax algorithm and play on the board
